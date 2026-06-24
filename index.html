@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relógio Odonto Reis</title>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Prata&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: transparent;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.or-widget {
+  width: 100%;
+  max-width: 640px;
+  min-height: 285px;
+  padding: 28px 22px 24px;
+  text-align: center;
+  color: #4B2910;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(166, 99, 60, 0.12), transparent 44%),
+    linear-gradient(135deg, #FBF9F4 0%, #F8F6F1 58%, #F2E9DF 100%);
+  font-family: "Manrope", Arial, sans-serif;
+  overflow: hidden;
+}
+
+.or-brand {
+  margin: 0 0 26px;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: #8E421F;
+}
+
+.or-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin-bottom: 26px;
+}
+
+.or-pair {
+  display: flex;
+  gap: 5px;
+}
+
+.or-digit {
+  position: relative;
+  width: 62px;
+  height: 88px;
+  perspective: 900px;
+}
+
+.or-half,
+.or-flip-top,
+.or-flip-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: rgba(255, 251, 245, 0.78);
+  border: 1px solid rgba(166, 99, 60, 0.13);
+  color: #8E421F;
+  font-family: "Prata", Georgia, serif;
+  font-size: 66px;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  backface-visibility: hidden;
+}
+
+.or-half span,
+.or-flip-top span,
+.or-flip-bottom span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 88px;
+  line-height: 83px;
+  text-align: center;
+}
+
+.or-half.top,
+.or-flip-top {
+  top: 0;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(166, 99, 60, 0.15);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.26)),
+    rgba(255, 251, 245, 0.82);
+  transform-origin: bottom;
+}
+
+.or-half.top span,
+.or-flip-top span {
+  top: 0;
+}
+
+.or-half.bottom,
+.or-flip-bottom {
+  bottom: 0;
+  border-radius: 0 0 16px 16px;
+  border-top: 0;
+  background:
+    linear-gradient(180deg, rgba(232, 213, 198, 0.20), rgba(255,255,255,0.34)),
+    rgba(255, 251, 245, 0.76);
+  transform-origin: top;
+}
+
+.or-half.bottom span,
+.or-flip-bottom span {
+  bottom: 0;
+}
+
+.or-digit::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 50%;
+  height: 1px;
+  background: rgba(166, 99, 60, 0.18);
+  z-index: 20;
+}
+
+.or-digit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow:
+    0 14px 28px rgba(75, 41, 16, 0.055),
+    inset 0 1px 0 rgba(255,255,255,0.70);
+  pointer-events: none;
+  z-index: 21;
+}
+
+.or-flip-top {
+  z-index: 10;
+  animation: flipTop 0.32s ease-in forwards;
+}
+
+.or-flip-bottom {
+  z-index: 9;
+  transform: rotateX(90deg);
+  animation: flipBottom 0.32s ease-out 0.29s forwards;
+}
+
+@keyframes flipTop {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+
+@keyframes flipBottom {
+  from { transform: rotateX(90deg); }
+  to { transform: rotateX(0deg); }
+}
+
+.or-separator {
+  margin-top: -6px;
+  color: #8E421F;
+  font-family: "Prata", Georgia, serif;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.or-greeting {
+  margin: 0 0 12px;
+  color: #2A2725;
+  font-family: "Prata", Georgia, serif;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+.or-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(166, 99, 60, 0.16);
+  background: rgba(255, 251, 245, 0.48);
+  color: #4B2910;
+  font-family: "Prata", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@media (max-width: 520px) {
+  .or-widget {
+    max-width: 100%;
+    min-height: 230px;
+    padding: 24px 10px 20px;
+  }
+
+  .or-brand {
+    margin-bottom: 22px;
+    font-size: 9px;
+    letter-spacing: 0.42em;
+  }
+
+  .or-clock {
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+
+  .or-pair {
+    gap: 3px;
+  }
+
+  .or-digit {
+    width: 38px;
+    height: 56px;
+  }
+
+  .or-half,
+  .or-flip-top,
+  .or-flip-bottom {
+    font-size: 42px;
+  }
+
+  .or-half span,
+  .or-flip-top span,
+  .or-flip-bottom span {
+    height: 56px;
+    line-height: 53px;
+  }
+
+  .or-half.top,
+  .or-flip-top {
+    border-radius: 11px 11px 0 0;
+  }
+
+  .or-half.bottom,
+  .or-flip-bottom {
+    border-radius: 0 0 11px 11px;
+  }
+
+  .or-digit::after {
+    border-radius: 11px;
+  }
+
+  .or-separator {
+    font-size: 25px;
+    margin-top: -4px;
+  }
+
+  .or-greeting {
+    font-size: 22px;
+  }
+
+  .or-date {
+    min-height: 32px;
+    padding: 7px 16px;
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="or-widget">
+  <p class="or-brand">Odonto Reis</p>
+
+  <div class="or-clock">
+    <div class="or-pair">
+      <div class="or-digit" data-value="0"></div>
+      <div class="or-digit" data-value="0"></div>
+    </div>
+
+    <div class="or-separator">:</div>
+
+    <div class="or-pair">
+      <div class="or-digit" data-value="0"></div>
+      <div class="or-digit" data-value="0"></div>
+    </div>
+
+    <div class="or-separator">:</div>
+
+    <div class="or-pair">
+      <div class="or-digit" data-value="0"></div>
+      <div class="or-digit" data-value="0"></div>
+    </div>
+  </div>
+
+  <p class="or-greeting" id="greeting">Bom dia, Dra. Ketryn</p>
+  <div class="or-date" id="date">Carregando data...</div>
+</div>
+
+<script>
+const digits = Array.from(document.querySelectorAll(".or-digit"));
+
+function createDigit(el, value) {
+  el.innerHTML = `
+    <div class="or-half top"><span>${value}</span></div>
+    <div class="or-half bottom"><span>${value}</span></div>
+  `;
+  el.dataset.value = value;
+}
+
+function flipDigit(el, nextValue) {
+  const currentValue = el.dataset.value;
+  if (currentValue === nextValue) return;
+
+  const top = el.querySelector(".or-half.top span");
+  const bottom = el.querySelector(".or-half.bottom span");
+
+  const flipTop = document.createElement("div");
+  flipTop.className = "or-flip-top";
+  flipTop.innerHTML = `<span>${currentValue}</span>`;
+
+  const flipBottom = document.createElement("div");
+  flipBottom.className = "or-flip-bottom";
+  flipBottom.innerHTML = `<span>${nextValue}</span>`;
+
+  top.textContent = nextValue;
+
+  el.appendChild(flipTop);
+  el.appendChild(flipBottom);
+
+  setTimeout(() => {
+    bottom.textContent = nextValue;
+    el.dataset.value = nextValue;
+  }, 300);
+
+  setTimeout(() => {
+    flipTop.remove();
+    flipBottom.remove();
+  }, 700);
+}
+
+function updateClock() {
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  }).replaceAll(":", "");
+
+  time.split("").forEach((value, index) => {
+    flipDigit(digits[index], value);
+  });
+
+  const hour = now.getHours();
+  let greeting = "Boa noite";
+
+  if (hour >= 5 && hour < 12) greeting = "Bom dia";
+  if (hour >= 12 && hour < 18) greeting = "Boa tarde";
+
+  const date = now.toLocaleDateString("pt-BR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+  document.getElementById("greeting").textContent = greeting + ", Dra. Ketryn";
+  document.getElementById("date").textContent =
+    date.charAt(0).toUpperCase() + date.slice(1);
+}
+
+digits.forEach((digit) => createDigit(digit, "0"));
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
