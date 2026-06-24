@@ -6,279 +6,201 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Relógio Odonto Reis</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Prata&display=swap");
 
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  background:transparent;
+  overflow:hidden;
 }
 
-html,
-body {
-  margin: 0;
-  width: 100%;
-  min-height: 100%;
-  background: transparent;
+body{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.or-widget {
-  width: 100%;
-  max-width: 640px;
-  min-height: 285px;
-  padding: 28px 22px 24px;
-  text-align: center;
-  color: #4B2910;
+.or-widget{
+  width:100%;
+  max-width:520px;
+  padding:18px 16px 18px;
+  text-align:center;
+  color:#4B2910;
   background:
-    radial-gradient(circle at 50% 44%, rgba(166, 99, 60, 0.12), transparent 44%),
-    linear-gradient(135deg, #FBF9F4 0%, #F8F6F1 58%, #F2E9DF 100%);
-  font-family: "Manrope", Arial, sans-serif;
-  overflow: hidden;
+    radial-gradient(circle at 50% 45%, rgba(166,99,60,.10), transparent 45%),
+    linear-gradient(135deg,#FBF9F4 0%,#F8F6F1 58%,#F2E9DF 100%);
+  font-family:"Manrope",Arial,sans-serif;
 }
 
-.or-brand {
-  margin: 0 0 26px;
-  font-size: 10px;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: 0.52em;
-  text-transform: uppercase;
-  color: #8E421F;
+.or-brand{
+  margin:0 0 14px;
+  font-size:8px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.46em;
+  text-transform:uppercase;
+  color:#8E421F;
+  opacity:.85;
 }
 
-.or-clock {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-  margin-bottom: 26px;
+.or-clock{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin-bottom:16px;
 }
 
-.or-pair {
-  display: flex;
-  gap: 5px;
+.or-pair{
+  display:flex;
+  gap:4px;
 }
 
-.or-digit {
-  position: relative;
-  width: 62px;
-  height: 88px;
-  perspective: 900px;
+.or-digit{
+  position:relative;
+  width:50px;
+  height:72px;
+  perspective:900px;
 }
 
 .or-half,
 .or-flip-top,
-.or-flip-bottom {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-  background: rgba(255, 251, 245, 0.78);
-  border: 1px solid rgba(166, 99, 60, 0.13);
-  color: #8E421F;
-  font-family: "Prata", Georgia, serif;
-  font-size: 66px;
-  font-weight: 400;
-  letter-spacing: -0.08em;
-  backface-visibility: hidden;
+.or-flip-bottom{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:50%;
+  overflow:hidden;
+  background:rgba(255,251,245,.84);
+  border:1px solid rgba(166,99,60,.14);
+  color:#8E421F;
+  font-family:"Prata",Georgia,serif;
+  font-size:54px;
+  font-weight:400;
+  letter-spacing:-.08em;
+  backface-visibility:hidden;
 }
 
 .or-half span,
 .or-flip-top span,
-.or-flip-bottom span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 88px;
-  line-height: 83px;
-  text-align: center;
+.or-flip-bottom span{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:72px;
+  line-height:68px;
+  text-align:center;
 }
 
 .or-half.top,
-.or-flip-top {
-  top: 0;
-  border-radius: 16px 16px 0 0;
-  border-bottom: 1px solid rgba(166, 99, 60, 0.15);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.26)),
-    rgba(255, 251, 245, 0.82);
-  transform-origin: bottom;
+.or-flip-top{
+  top:0;
+  border-radius:13px 13px 0 0;
+  border-bottom:1px solid rgba(166,99,60,.16);
+  background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.30)),rgba(255,251,245,.86);
+  transform-origin:bottom;
 }
 
 .or-half.top span,
-.or-flip-top span {
-  top: 0;
-}
+.or-flip-top span{top:0}
 
 .or-half.bottom,
-.or-flip-bottom {
-  bottom: 0;
-  border-radius: 0 0 16px 16px;
-  border-top: 0;
-  background:
-    linear-gradient(180deg, rgba(232, 213, 198, 0.20), rgba(255,255,255,0.34)),
-    rgba(255, 251, 245, 0.76);
-  transform-origin: top;
+.or-flip-bottom{
+  bottom:0;
+  border-radius:0 0 13px 13px;
+  border-top:0;
+  background:linear-gradient(180deg,rgba(232,213,198,.20),rgba(255,255,255,.34)),rgba(255,251,245,.78);
+  transform-origin:top;
 }
 
 .or-half.bottom span,
-.or-flip-bottom span {
-  bottom: 0;
+.or-flip-bottom span{bottom:0}
+
+.or-digit::before{
+  content:"";
+  position:absolute;
+  left:-1px;
+  right:-1px;
+  top:50%;
+  height:1px;
+  background:rgba(166,99,60,.20);
+  z-index:20;
 }
 
-.or-digit::before {
-  content: "";
-  position: absolute;
-  left: -1px;
-  right: -1px;
-  top: 50%;
-  height: 1px;
-  background: rgba(166, 99, 60, 0.18);
-  z-index: 20;
+.or-digit::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:13px;
+  box-shadow:0 12px 24px rgba(75,41,16,.055);
+  pointer-events:none;
+  z-index:21;
 }
 
-.or-digit::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  box-shadow:
-    0 14px 28px rgba(75, 41, 16, 0.055),
-    inset 0 1px 0 rgba(255,255,255,0.70);
-  pointer-events: none;
-  z-index: 21;
+.or-flip-top{
+  z-index:10;
+  animation:flipTop .32s ease-in forwards;
 }
 
-.or-flip-top {
-  z-index: 10;
-  animation: flipTop 0.32s ease-in forwards;
+.or-flip-bottom{
+  z-index:9;
+  transform:rotateX(90deg);
+  animation:flipBottom .32s ease-out .29s forwards;
 }
 
-.or-flip-bottom {
-  z-index: 9;
-  transform: rotateX(90deg);
-  animation: flipBottom 0.32s ease-out 0.29s forwards;
+@keyframes flipTop{
+  from{transform:rotateX(0)}
+  to{transform:rotateX(-90deg)}
 }
 
-@keyframes flipTop {
-  from { transform: rotateX(0deg); }
-  to { transform: rotateX(-90deg); }
+@keyframes flipBottom{
+  from{transform:rotateX(90deg)}
+  to{transform:rotateX(0)}
 }
 
-@keyframes flipBottom {
-  from { transform: rotateX(90deg); }
-  to { transform: rotateX(0deg); }
+.or-separator{
+  margin-top:-5px;
+  color:#8E421F;
+  font-family:"Prata",Georgia,serif;
+  font-size:34px;
+  line-height:1;
 }
 
-.or-separator {
-  margin-top: -6px;
-  color: #8E421F;
-  font-family: "Prata", Georgia, serif;
-  font-size: 40px;
-  line-height: 1;
-  font-weight: 400;
+.or-date{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:8px 24px;
+  border-radius:999px;
+  border:1px solid rgba(166,99,60,.18);
+  background:rgba(255,251,245,.58);
+  color:#4B2910;
+  font-family:"Prata",Georgia,serif;
+  font-size:17px;
+  line-height:1.2;
 }
 
-.or-greeting {
-  margin: 0 0 12px;
-  color: #2A2725;
-  font-family: "Prata", Georgia, serif;
-  font-size: 28px;
-  line-height: 1.15;
-  font-weight: 400;
-  letter-spacing: -0.025em;
+.or-greeting{
+  margin:10px 0 0;
+  color:#6F665E;
+  font-family:"Manrope",Arial,sans-serif;
+  font-size:12px;
+  line-height:1.2;
+  font-weight:700;
 }
 
-.or-date {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 7px 22px;
-  border-radius: 999px;
-  border: 1px solid rgba(166, 99, 60, 0.16);
-  background: rgba(255, 251, 245, 0.48);
-  color: #4B2910;
-  font-family: "Prata", Georgia, serif;
-  font-size: 15px;
-  line-height: 1.2;
-  font-weight: 400;
-}
-
-@media (max-width: 520px) {
-  .or-widget {
-    max-width: 100%;
-    min-height: 230px;
-    padding: 24px 10px 20px;
-  }
-
-  .or-brand {
-    margin-bottom: 22px;
-    font-size: 9px;
-    letter-spacing: 0.42em;
-  }
-
-  .or-clock {
-    gap: 6px;
-    margin-bottom: 22px;
-  }
-
-  .or-pair {
-    gap: 3px;
-  }
-
-  .or-digit {
-    width: 38px;
-    height: 56px;
-  }
-
-  .or-half,
-  .or-flip-top,
-  .or-flip-bottom {
-    font-size: 42px;
-  }
-
-  .or-half span,
-  .or-flip-top span,
-  .or-flip-bottom span {
-    height: 56px;
-    line-height: 53px;
-  }
-
-  .or-half.top,
-  .or-flip-top {
-    border-radius: 11px 11px 0 0;
-  }
-
-  .or-half.bottom,
-  .or-flip-bottom {
-    border-radius: 0 0 11px 11px;
-  }
-
-  .or-digit::after {
-    border-radius: 11px;
-  }
-
-  .or-separator {
-    font-size: 25px;
-    margin-top: -4px;
-  }
-
-  .or-greeting {
-    font-size: 22px;
-  }
-
-  .or-date {
-    min-height: 32px;
-    padding: 7px 16px;
-    font-size: 13px;
-  }
+.or-heart{
+  margin-right:6px;
+  color:#A6633C;
+  font-size:11px;
 }
 </style>
 </head>
@@ -293,103 +215,97 @@ body {
       <div class="or-digit" data-value="0"></div>
       <div class="or-digit" data-value="0"></div>
     </div>
-
     <div class="or-separator">:</div>
-
     <div class="or-pair">
       <div class="or-digit" data-value="0"></div>
       <div class="or-digit" data-value="0"></div>
     </div>
-
     <div class="or-separator">:</div>
-
     <div class="or-pair">
       <div class="or-digit" data-value="0"></div>
       <div class="or-digit" data-value="0"></div>
     </div>
   </div>
 
-  <p class="or-greeting" id="greeting">Bom dia, Dra. Ketryn</p>
   <div class="or-date" id="date">Carregando data...</div>
+  <p class="or-greeting" id="greeting"></p>
 </div>
 
 <script>
-const digits = Array.from(document.querySelectorAll(".or-digit"));
+const digits=Array.from(document.querySelectorAll(".or-digit"));
 
-function createDigit(el, value) {
-  el.innerHTML = `
+function createDigit(el,value){
+  el.innerHTML=`
     <div class="or-half top"><span>${value}</span></div>
     <div class="or-half bottom"><span>${value}</span></div>
   `;
-  el.dataset.value = value;
+  el.dataset.value=value;
 }
 
-function flipDigit(el, nextValue) {
-  const currentValue = el.dataset.value;
-  if (currentValue === nextValue) return;
+function flipDigit(el,nextValue){
+  const currentValue=el.dataset.value;
+  if(currentValue===nextValue)return;
 
-  const top = el.querySelector(".or-half.top span");
-  const bottom = el.querySelector(".or-half.bottom span");
+  const top=el.querySelector(".or-half.top span");
+  const bottom=el.querySelector(".or-half.bottom span");
 
-  const flipTop = document.createElement("div");
-  flipTop.className = "or-flip-top";
-  flipTop.innerHTML = `<span>${currentValue}</span>`;
+  const flipTop=document.createElement("div");
+  flipTop.className="or-flip-top";
+  flipTop.innerHTML=`<span>${currentValue}</span>`;
 
-  const flipBottom = document.createElement("div");
-  flipBottom.className = "or-flip-bottom";
-  flipBottom.innerHTML = `<span>${nextValue}</span>`;
+  const flipBottom=document.createElement("div");
+  flipBottom.className="or-flip-bottom";
+  flipBottom.innerHTML=`<span>${nextValue}</span>`;
 
-  top.textContent = nextValue;
-
+  top.textContent=nextValue;
   el.appendChild(flipTop);
   el.appendChild(flipBottom);
 
-  setTimeout(() => {
-    bottom.textContent = nextValue;
-    el.dataset.value = nextValue;
-  }, 300);
+  setTimeout(()=>{
+    bottom.textContent=nextValue;
+    el.dataset.value=nextValue;
+  },300);
 
-  setTimeout(() => {
+  setTimeout(()=>{
     flipTop.remove();
     flipBottom.remove();
-  }, 700);
+  },700);
 }
 
-function updateClock() {
-  const now = new Date();
+function updateClock(){
+  const now=new Date();
 
-  const time = now.toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  }).replaceAll(":", "");
+  const time=now.toLocaleTimeString("pt-BR",{
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit"
+  }).replaceAll(":","");
 
-  time.split("").forEach((value, index) => {
-    flipDigit(digits[index], value);
+  time.split("").forEach((value,index)=>{
+    flipDigit(digits[index],value);
   });
 
-  const hour = now.getHours();
-  let greeting = "Boa noite";
+  const hour=now.getHours();
+  let greeting="Boa noite";
 
-  if (hour >= 5 && hour < 12) greeting = "Bom dia";
-  if (hour >= 12 && hour < 18) greeting = "Boa tarde";
+  if(hour>=5&&hour<12)greeting="Bom dia";
+  if(hour>=12&&hour<18)greeting="Boa tarde";
 
-  const date = now.toLocaleDateString("pt-BR", {
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric"
+  const date=now.toLocaleDateString("pt-BR",{
+    weekday:"long",
+    day:"2-digit",
+    month:"long",
+    year:"numeric"
   });
 
-  document.getElementById("greeting").textContent = greeting + ", Dra. Ketryn";
-  document.getElementById("date").textContent =
-    date.charAt(0).toUpperCase() + date.slice(1);
+  document.getElementById("date").textContent=date.charAt(0).toUpperCase()+date.slice(1);
+  document.getElementById("greeting").innerHTML=
+    `<i class="fa-regular fa-heart or-heart"></i>${greeting}, Dra. Ketryn!`;
 }
 
-digits.forEach((digit) => createDigit(digit, "0"));
-
+digits.forEach((digit)=>createDigit(digit,"0"));
 updateClock();
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 </script>
 
 </body>
