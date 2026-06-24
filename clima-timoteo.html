@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clima Timóteo MG</title>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Prata&display=swap");
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  background:transparent;
+  overflow:hidden;
+}
+
+body{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.weather-widget{
+  width:fit-content;
+  min-width:340px;
+  max-width:100%;
+  padding:16px 18px 18px;
+  text-align:center;
+  color:#4B2910;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(166,99,60,.10),transparent 44%),
+    linear-gradient(135deg,#FBF9F4 0%,#F8F6F1 58%,#F2E9DF 100%);
+  font-family:"Manrope",Arial,sans-serif;
+}
+
+.brand{
+  margin:0 0 10px;
+  font-size:8px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+  color:#8E421F;
+  opacity:.85;
+}
+
+.weather-main{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin-bottom:8px;
+}
+
+.weather-icon{
+  width:112px;
+  height:96px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:drop-shadow(0 10px 16px rgba(75,41,16,.12));
+}
+
+.weather-icon img{
+  width:112px;
+  height:96px;
+  object-fit:contain;
+  display:block;
+}
+
+.temp{
+  font-family:"Prata",Georgia,serif;
+  font-size:68px;
+  line-height:1;
+  color:#8E421F;
+}
+
+.condition{
+  margin:0 0 10px;
+  font-family:"Prata",Georgia,serif;
+  font-size:23px;
+  color:#2A2725;
+}
+
+.details{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  min-height:30px;
+  padding:7px 13px;
+  border-radius:999px;
+  border:1px solid rgba(166,99,60,.16);
+  background:rgba(255,251,245,.54);
+  color:#6F665E;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.loading{
+  font-size:14px;
+  color:#6F665E;
+}
+</style>
+</head>
+
+<body>
+
+<div class="weather-widget">
+  <p class="brand">Timóteo MG</p>
+  <div id="content" class="loading">Carregando clima...</div>
+</div>
+
+<script>
+const weatherCodes = {
+  0: ["Céu limpo", "clear"],
+  1: ["Sol entre nuvens", "mostly_clear"],
+  2: ["Parcialmente nublado", "partly_cloudy"],
+  3: ["Céu nublado", "mostly_cloudy"],
+  45: ["Neblina", "fog"],
+  48: ["Neblina", "fog"],
+  51: ["Garoa leve", "drizzle"],
+  53: ["Garoa", "drizzle"],
+  55: ["Garoa forte", "drizzle"],
+  61: ["Chuva leve", "showers"],
+  63: ["Chuva", "rain"],
+  65: ["Chuva forte", "heavy_rain"],
+  80: ["Pancadas de chuva", "showers"],
+  81: ["Pancadas de chuva", "showers"],
+  82: ["Chuva intensa", "heavy_rain"],
+  95: ["Temporal", "strong_tstorms"],
+  96: ["Temporal com chuva", "strong_tstorms"],
+  99: ["Temporal forte", "strong_tstorms"]
+};
+
+function getGoogleWeatherIcon(iconName){
+  return `https://maps.gstatic.com/weather/v1/${iconName}.svg`;
+}
+
+function fallbackIcon(img, iconName){
+  const fallbackMap = {
+    clear: "sunny",
+    mostly_clear: "partly_cloudy",
+    partly_cloudy: "partly_cloudy",
+    mostly_cloudy: "cloudy",
+    fog: "mist",
+    drizzle: "rain",
+    showers: "rain",
+    rain: "rain",
+    heavy_rain: "rain",
+    strong_tstorms: "thunderstorm"
+  };
+
+  const fallback = fallbackMap[iconName] || "partly_cloudy";
+
+  if (!img.dataset.fallbackUsed) {
+    img.dataset.fallbackUsed = "true";
+    img.src = getGoogleWeatherIcon(fallback);
+  } else {
+    img.style.display = "none";
+  }
+}
+
+async function loadWeather(){
+  const url="https://api.open-meteo.com/v1/forecast?latitude=-19.5811&longitude=-42.6476&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=America%2FSao_Paulo";
+
+  try{
+    const response=await fetch(url);
+    const data=await response.json();
+    const current=data.current;
+
+    const temp=Math.round(current.temperature_2m);
+    const feels=Math.round(current.apparent_temperature);
+    const humidity=current.relative_humidity_2m;
+    const wind=Math.round(current.wind_speed_10m);
+    const code=current.weather_code;
+
+    const info=weatherCodes[code] || ["Clima atual","partly_cloudy"];
+    const label=info[0];
+    const icon=info[1];
+
+    document.getElementById("content").innerHTML=`
+      <div class="weather-main">
+        <div class="weather-icon">
+          <img 
+            src="${getGoogleWeatherIcon(icon)}" 
+            alt="${label}" 
+            onerror="fallbackIcon(this, '${icon}')"
+          >
+        </div>
+        <div class="temp">${temp}°</div>
+      </div>
+
+      <p class="condition">${label}</p>
+
+      <div class="details">
+        <div class="pill">Sensação ${feels}°</div>
+        <div class="pill">Umidade ${humidity}%</div>
+        <div class="pill">Vento ${wind} km/h</div>
+      </div>
+    `;
+  }catch(error){
+    document.getElementById("content").innerHTML="Não foi possível carregar o clima.";
+  }
+}
+
+loadWeather();
+setInterval(loadWeather,600000);
+</script>
+
+</body>
+</html>
