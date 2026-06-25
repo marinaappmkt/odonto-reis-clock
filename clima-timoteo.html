@@ -29,7 +29,7 @@ body{
   width:fit-content;
   min-width:340px;
   max-width:100%;
-  padding:16px 18px 18px;
+  padding:16px 18px 16px;
   text-align:center;
   color:#4B2910;
   background:
@@ -39,7 +39,7 @@ body{
 }
 
 .brand{
-  margin:0 0 10px;
+  margin:0 0 8px;
   font-size:8px;
   line-height:1;
   font-weight:800;
@@ -53,13 +53,13 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:16px;
-  margin-bottom:8px;
+  gap:14px;
+  margin-bottom:6px;
 }
 
 .weather-icon{
-  width:112px;
-  height:96px;
+  width:84px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -67,23 +67,23 @@ body{
 }
 
 .weather-icon img{
-  width:112px;
-  height:96px;
+  width:84px;
+  height:72px;
   object-fit:contain;
   display:block;
 }
 
 .temp{
   font-family:"Prata",Georgia,serif;
-  font-size:68px;
+  font-size:56px;
   line-height:1;
   color:#8E421F;
 }
 
 .condition{
-  margin:0 0 10px;
+  margin:0 0 8px;
   font-family:"Prata",Georgia,serif;
-  font-size:23px;
+  font-size:21px;
   color:#2A2725;
 }
 
@@ -95,8 +95,8 @@ body{
 }
 
 .pill{
-  min-height:30px;
-  padding:7px 13px;
+  min-height:28px;
+  padding:6px 12px;
   border-radius:999px;
   border:1px solid rgba(166,99,60,.16);
   background:rgba(255,251,245,.54);
@@ -104,6 +104,19 @@ body{
   font-size:12px;
   font-weight:700;
   white-space:nowrap;
+}
+
+.personal-message{
+  margin:10px 0 0;
+  color:#6F665E;
+  font-size:12px;
+  line-height:1.35;
+  font-weight:700;
+}
+
+.personal-message span{
+  color:#A6633C;
+  margin-right:5px;
 }
 
 .loading{
@@ -207,6 +220,10 @@ async function loadWeather(){
         <div class="pill">Umidade ${humidity}%</div>
         <div class="pill">Vento ${wind} km/h</div>
       </div>
+
+      <p class="personal-message">
+        <span>♡</span>Dra. Ketryn, um dia leve para cuidar de muitos sorrisos.
+      </p>
     `;
   }catch(error){
     document.getElementById("content").innerHTML="Não foi possível carregar o clima.";
