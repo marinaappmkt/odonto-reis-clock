@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Relógio Odonto Reis</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<title>Widget Odonto Reis</title>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Prata&display=swap");
 
 *{box-sizing:border-box}
 
@@ -29,44 +27,81 @@ body{
 
 .or-widget{
   width:100%;
-  max-width:520px;
-  padding:18px 16px 18px;
-  text-align:center;
+  max-width:380px;
+  padding:24px 18px 26px;
   color:#4B2910;
+  text-align:center;
   background:
-    radial-gradient(circle at 50% 45%, rgba(166,99,60,.10), transparent 45%),
+    radial-gradient(circle at 50% 34%,rgba(166,99,60,.10),transparent 46%),
     linear-gradient(135deg,#FBF9F4 0%,#F8F6F1 58%,#F2E9DF 100%);
   font-family:"Manrope",Arial,sans-serif;
 }
 
 .or-brand{
-  margin:0 0 14px;
+  margin:0 0 22px;
   font-size:8px;
-  line-height:1;
+  line-height:1.4;
   font-weight:800;
-  letter-spacing:.46em;
+  letter-spacing:.48em;
   text-transform:uppercase;
   color:#8E421F;
-  opacity:.85;
+  opacity:.86;
+}
+
+.or-date-wrap{
+  margin:0 0 26px;
+}
+
+.or-date-label{
+  margin:0 0 8px;
+  font-size:8px;
+  line-height:1.5;
+  font-weight:800;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#A6633C;
+  opacity:.78;
+}
+
+.or-date-main{
+  margin:0;
+  color:#2A2725;
+  font-family:"Prata",Georgia,serif;
+  font-size:30px;
+  line-height:1.18;
+  font-weight:400;
+}
+
+.or-date-sub{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin:14px 0 0;
+  padding:10px 20px;
+  border-radius:999px;
+  border:1px solid rgba(166,99,60,.18);
+  background:rgba(255,251,245,.66);
+  box-shadow:0 10px 22px rgba(75,41,16,.045);
+  color:#8E421F;
+  font-size:18px;
+  line-height:1.35;
+  font-weight:800;
 }
 
 .or-clock{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:9px;
-  margin-bottom:16px;
+  gap:7px;
+  margin-bottom:24px;
 }
 
-.or-pair{
-  display:flex;
-  gap:4px;
-}
+.or-pair{display:flex;gap:3px}
 
 .or-digit{
   position:relative;
-  width:50px;
-  height:72px;
+  width:42px;
+  height:62px;
   perspective:900px;
 }
 
@@ -78,11 +113,11 @@ body{
   width:100%;
   height:50%;
   overflow:hidden;
-  background:rgba(255,251,245,.84);
-  border:1px solid rgba(166,99,60,.14);
+  background:rgba(255,251,245,.88);
+  border:1px solid rgba(166,99,60,.13);
   color:#8E421F;
   font-family:"Prata",Georgia,serif;
-  font-size:54px;
+  font-size:45px;
   font-weight:400;
   letter-spacing:-.08em;
   backface-visibility:hidden;
@@ -94,34 +129,30 @@ body{
   position:absolute;
   left:0;
   width:100%;
-  height:72px;
-  line-height:68px;
+  height:62px;
+  line-height:59px;
   text-align:center;
 }
 
-.or-half.top,
-.or-flip-top{
+.or-half.top,.or-flip-top{
   top:0;
   border-radius:13px 13px 0 0;
   border-bottom:1px solid rgba(166,99,60,.16);
-  background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.30)),rgba(255,251,245,.86);
+  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.34)),rgba(255,251,245,.90);
   transform-origin:bottom;
 }
 
-.or-half.top span,
-.or-flip-top span{top:0}
+.or-half.top span,.or-flip-top span{top:0}
 
-.or-half.bottom,
-.or-flip-bottom{
+.or-half.bottom,.or-flip-bottom{
   bottom:0;
   border-radius:0 0 13px 13px;
   border-top:0;
-  background:linear-gradient(180deg,rgba(232,213,198,.20),rgba(255,255,255,.34)),rgba(255,251,245,.78);
+  background:linear-gradient(180deg,rgba(232,213,198,.18),rgba(255,255,255,.36)),rgba(255,251,245,.82);
   transform-origin:top;
 }
 
-.or-half.bottom span,
-.or-flip-bottom span{bottom:0}
+.or-half.bottom span,.or-flip-bottom span{bottom:0}
 
 .or-digit::before{
   content:"";
@@ -130,7 +161,7 @@ body{
   right:-1px;
   top:50%;
   height:1px;
-  background:rgba(166,99,60,.20);
+  background:rgba(166,99,60,.18);
   z-index:20;
 }
 
@@ -139,7 +170,7 @@ body{
   position:absolute;
   inset:0;
   border-radius:13px;
-  box-shadow:0 12px 24px rgba(75,41,16,.055);
+  box-shadow:0 12px 24px rgba(75,41,16,.05);
   pointer-events:none;
   z-index:21;
 }
@@ -169,38 +200,105 @@ body{
   margin-top:-5px;
   color:#8E421F;
   font-family:"Prata",Georgia,serif;
-  font-size:34px;
-  line-height:1;
+  font-size:28px;
+  line-height:1.35;
 }
 
-.or-date{
-  display:inline-flex;
+.or-divider{
+  width:100%;
+  height:1px;
+  margin:0 auto 22px;
+  background:linear-gradient(90deg,transparent,rgba(166,99,60,.20),transparent);
+}
+
+.weather-main{
+  display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  min-height:38px;
-  padding:8px 24px;
-  border-radius:999px;
-  border:1px solid rgba(166,99,60,.18);
-  background:rgba(255,251,245,.58);
-  color:#4B2910;
-  font-family:"Prata",Georgia,serif;
-  font-size:17px;
-  line-height:1.2;
+  gap:8px;
+  margin-bottom:14px;
 }
 
-.or-greeting{
-  margin:10px 0 0;
-  color:#6F665E;
-  font-family:"Manrope",Arial,sans-serif;
-  font-size:12px;
+.weather-icon{
+  width:74px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:drop-shadow(0 10px 16px rgba(75,41,16,.12));
+}
+
+.weather-icon img{
+  width:74px;
+  height:64px;
+  object-fit:contain;
+  display:block;
+}
+
+.weather-temp-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:12px;
+}
+
+.temp{
+  font-family:"Prata",Georgia,serif;
+  font-size:50px;
   line-height:1.2;
+  color:#8E421F;
+}
+
+.condition{
+  margin:0;
+  font-family:"Prata",Georgia,serif;
+  font-size:22px;
+  line-height:1.35;
+  color:#2A2725;
+  white-space:nowrap;
+}
+
+.details{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.pill{
+  color:#6F665E;
+  font-size:11px;
+  line-height:1.55;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.pill:not(:last-child)::after{
+  content:"·";
+  margin-left:8px;
+  color:rgba(166,99,60,.55);
+}
+
+.personal-message{
+  margin:0;
+  color:#6F665E;
+  font-size:12px;
+  line-height:1.55;
   font-weight:700;
 }
 
-.or-heart{
-  margin-right:6px;
+.personal-message span{
   color:#A6633C;
-  font-size:11px;
+  margin-right:5px;
+}
+
+.loading{
+  font-size:13px;
+  line-height:1.5;
+  color:#6F665E;
 }
 </style>
 </head>
@@ -209,6 +307,12 @@ body{
 
 <div class="or-widget">
   <p class="or-brand">Odonto Reis</p>
+
+  <div class="or-date-wrap">
+    <p class="or-date-label">Hoje é</p>
+    <p class="or-date-main" id="dateMain">Carregando...</p>
+    <p class="or-date-sub" id="dateSub"></p>
+  </div>
 
   <div class="or-clock">
     <div class="or-pair">
@@ -227,8 +331,11 @@ body{
     </div>
   </div>
 
-  <div class="or-date" id="date">Carregando data...</div>
-  <p class="or-greeting" id="greeting"></p>
+  <div class="or-divider"></div>
+
+  <div id="weather" class="loading">Carregando clima...</div>
+
+  <p class="personal-message" id="greeting"></p>
 </div>
 
 <script>
@@ -285,27 +392,123 @@ function updateClock(){
     flipDigit(digits[index],value);
   });
 
+  const weekday=now.toLocaleDateString("pt-BR",{weekday:"long"});
+  const day=now.toLocaleDateString("pt-BR",{day:"2-digit"});
+  const month=now.toLocaleDateString("pt-BR",{month:"long"});
+  const year=now.toLocaleDateString("pt-BR",{year:"numeric"});
+
   const hour=now.getHours();
   let greeting="Boa noite";
 
   if(hour>=5&&hour<12)greeting="Bom dia";
   if(hour>=12&&hour<18)greeting="Boa tarde";
 
-  const date=now.toLocaleDateString("pt-BR",{
-    weekday:"long",
-    day:"2-digit",
-    month:"long",
-    year:"numeric"
-  });
+  document.getElementById("dateMain").textContent=weekday;
+  document.getElementById("dateSub").textContent=`Dia ${day} de ${month} de ${year}`;
+  document.getElementById("greeting").innerHTML=`<span>♡</span>${greeting}, Dra. Ketryn!`;
+}
 
-  document.getElementById("date").textContent=date.charAt(0).toUpperCase()+date.slice(1);
-  document.getElementById("greeting").innerHTML=
-    `<i class="fa-regular fa-heart or-heart"></i>${greeting}, Dra. Ketryn!`;
+const weatherCodes={
+  0:["Céu limpo","sunny"],
+  1:["Sol entre nuvens","mostly_sunny"],
+  2:["Parcialmente nublado","partly_cloudy"],
+  3:["Céu nublado","mostly_cloudy"],
+  45:["Neblina","fog"],
+  48:["Neblina","fog"],
+  51:["Garoa leve","drizzle"],
+  53:["Garoa","drizzle"],
+  55:["Garoa forte","drizzle"],
+  61:["Chuva leve","showers"],
+  63:["Chuva","rain"],
+  65:["Chuva forte","heavy_rain"],
+  80:["Pancadas de chuva","showers"],
+  81:["Pancadas de chuva","showers"],
+  82:["Chuva intensa","heavy_rain"],
+  95:["Temporal","strong_tstorms"],
+  96:["Temporal com chuva","strong_tstorms"],
+  99:["Temporal forte","strong_tstorms"]
+};
+
+function getGoogleWeatherIcon(iconName){
+  return `https://maps.gstatic.com/weather/v1/${iconName}.svg`;
+}
+
+function fallbackIcon(img,iconName){
+  const fallbackMap={
+    sunny:"clear",
+    mostly_sunny:"mostly_clear",
+    mostly_clear:"partly_cloudy",
+    partly_cloudy:"partly_cloudy",
+    mostly_cloudy:"cloudy",
+    fog:"mist",
+    drizzle:"rain",
+    showers:"rain",
+    rain:"rain",
+    heavy_rain:"rain",
+    strong_tstorms:"thunderstorm"
+  };
+
+  const fallback=fallbackMap[iconName] || "partly_cloudy";
+
+  if(!img.dataset.fallbackUsed){
+    img.dataset.fallbackUsed="true";
+    img.src=getGoogleWeatherIcon(fallback);
+  }else{
+    img.style.display="none";
+  }
+}
+
+async function loadWeather(){
+  const url="https://api.open-meteo.com/v1/forecast?latitude=-19.5811&longitude=-42.6476&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=America%2FSao_Paulo";
+
+  try{
+    const response=await fetch(url);
+    const data=await response.json();
+    const current=data.current;
+
+    const temp=Math.round(current.temperature_2m);
+    const feels=Math.round(current.apparent_temperature);
+    const humidity=current.relative_humidity_2m;
+    const wind=Math.round(current.wind_speed_10m);
+    const code=current.weather_code;
+
+    const info=weatherCodes[code] || ["Clima atual","partly_cloudy"];
+    const label=info[0];
+    const icon=info[1];
+
+    document.getElementById("weather").innerHTML=`
+      <div class="weather-main">
+        <div class="weather-icon">
+          <img
+            src="${getGoogleWeatherIcon(icon)}"
+            alt="${label}"
+            onerror="fallbackIcon(this, '${icon}')"
+          >
+        </div>
+
+        <div class="weather-temp-row">
+          <div class="temp">${temp}°</div>
+          <p class="condition">${label}</p>
+        </div>
+      </div>
+
+      <div class="details">
+        <div class="pill">Sensação ${feels}°</div>
+        <div class="pill">Umidade ${humidity}%</div>
+        <div class="pill">Vento ${wind} km/h</div>
+      </div>
+    `;
+  }catch(error){
+    document.getElementById("weather").innerHTML="Não foi possível carregar o clima.";
+  }
 }
 
 digits.forEach((digit)=>createDigit(digit,"0"));
 updateClock();
+loadWeather();
+
 setInterval(updateClock,1000);
+setInterval(loadWeather,600000);
 </script>
 
 </body>
